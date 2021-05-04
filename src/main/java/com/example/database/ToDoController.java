@@ -15,18 +15,18 @@ public class ToDoController {
     public void addToDo(@PathVariable String name, @PathVariable List<String> events){
         for (String event:events
              ) {
-            repo.save(new ToDoList(name, event));
+            repo.save(new ToDo(name, event));
         }
     }
 
 
     @GetMapping("/getToDoList")
-    public ArrayList<JsonToDo> getToDoLists(){
+    public ArrayList<ToDoList> getToDoLists(){
        var names = repo.findAllNames();
-        var result = new ArrayList<JsonToDo>();
+        var result = new ArrayList<ToDoList>();
         for (String name:names
         ) {
-            result.add(new JsonToDo(name, (List<String>) repo.findAllEventsByName(name)));
+            result.add(new ToDoList(name, (List<String>) repo.findAllEventsByName(name)));
         }
         return result;
     }

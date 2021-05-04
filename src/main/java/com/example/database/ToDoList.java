@@ -1,30 +1,14 @@
 package com.example.database;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
 @Data
-@Entity
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ToDoList {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
-
-    private String event;
-
-    public ToDoList(String name, String event) {
-        this.name = name;
-        this.event = event;
-    }
-
-
-    public ToDoList() {
-
-    }
+    String name;
+    List<String> events;
 }

@@ -6,10 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Collection;
 
 
-public interface ToDoRepository extends CrudRepository<ToDoList, Integer> {
+public interface ToDoRepository extends CrudRepository<ToDo, Integer> {
 
-    @Query("select DISTINCT b.name from ToDoList b")
+    @Query("select DISTINCT b.name from ToDo b")
     Collection<String> findAllNames();
-    @Query("select b.event from ToDoList b where b.name = :name")
+    @Query("select b.event from ToDo b where b.name = :name")
     Collection<String> findAllEventsByName(String name);
 }
