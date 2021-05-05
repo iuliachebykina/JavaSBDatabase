@@ -1,6 +1,7 @@
 package com.example.database;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NonNull
     private String event;
     @ManyToOne(fetch = FetchType.LAZY)
     private Name name;
