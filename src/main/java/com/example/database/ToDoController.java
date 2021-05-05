@@ -27,13 +27,13 @@ public class ToDoController {
 
     @GetMapping("/getToDoLists")
     public ArrayList<ToDoList> getToDoLists() {
-        var result = nameRepository.findAll();
-        var r = new ArrayList<ToDoList>();
-        for (Name todo :
-                result) {
-            r.add(new ToDoList(todo.getName(), todo.getEvents().stream().map(Event::getEvent).collect(Collectors.toList())));
-            System.out.println(todo.getName());
+        var names = nameRepository.findAll();
+        var result = new ArrayList<ToDoList>();
+        for (Name name :
+                names) {
+            result.add(new ToDoList(name.getName(), name.getEvents().stream().map(Event::getEvent).collect(Collectors.toList())));
+            System.out.println(name.getName());
         }
-        return r;
+        return result;
     }
 }
