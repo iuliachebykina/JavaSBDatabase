@@ -1,5 +1,6 @@
 package com.example.database;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -14,7 +15,8 @@ public class Event {
     @NonNull
     private String event;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Name name;
+    @JsonManagedReference
+    private ToDo name;
 
     public Event(String event){
         this.event = event;

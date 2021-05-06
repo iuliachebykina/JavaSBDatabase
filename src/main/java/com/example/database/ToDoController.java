@@ -13,25 +13,17 @@ import java.util.stream.Collectors;
 public class ToDoController {
 
 
-    final private NameRepository nameRepository;
+    final private ToDoRepository nameRepository;
 
     /*@GetMapping("/addToDatabase/{name}/{events}")
     public void addToDo(@PathVariable String name, @PathVariable List<String> events) {
-        var n = new Name(name);
-        for (String event :
-                events) {
-            n.addEvent(new Event(event));
-        }
+        var n = new ToDo(name, events);
         nameRepository.save(n);
     }*/
 
     @PostMapping("/addToDatabase")
     public void addToDo(@RequestBody ToDoList toDoList) {
-        var n = new Name(toDoList.getName());
-        for (String event :
-                toDoList.getEvents()) {
-            n.addEvent(new Event(event));
-        }
+        var n = new ToDo(toDoList.getName(), toDoList.getEvents());
         nameRepository.save(n);
     }
 
@@ -39,7 +31,7 @@ public class ToDoController {
     public ArrayList<ToDoList> getToDoLists() {
         var names = nameRepository.findAll();
         var result = new ArrayList<ToDoList>();
-        for (Name name :
+        for (var name :
                 names) {
             result.add(new ToDoList(name.getName(), name.getEvents().stream().map(Event::getEvent).collect(Collectors.toList())));
 
